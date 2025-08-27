@@ -59,7 +59,7 @@ const Layout = ({ children, hideNav = false }: LayoutProps) => {
   if (!isMounted) return null;
 
   return (
-    <div className="min-h-screen flex flex-col mx-auto max-w-[1300px] ">
+    <div className="min-h-screen flex flex-col mx-auto max-w-[1440px] ">
       <div className="flex flex-1 w-full relative">
         {/* Mobile sidebar */}
         <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>

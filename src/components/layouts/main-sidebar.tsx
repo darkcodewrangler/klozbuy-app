@@ -74,7 +74,7 @@ const Sidebar = memo(({ className }: SidebarProps) => {
       >
         <div
           className={cn(
-            "flex  items-center p-3 rounded-full transition-colors group-focus-within:outline-none group-focus-visible:outline-none group-focus-visible:ring-2 group-focus-visible:ring-klozui-green-600 group-focus-visible:ring-offset-2",
+            "flex  items-center p-2 rounded-md transition-colors group-focus-within:outline-none group-focus-visible:outline-none group-focus-visible:ring-2 group-focus-visible:ring-klozui-green-600 group-focus-visible:ring-offset-2",
 
             isActive
               ? "bg-klozui-green-600 text-white hover:bg-klozui-green-600/90 group-hover:bg-klozui-green-600/90"
@@ -85,14 +85,14 @@ const Sidebar = memo(({ className }: SidebarProps) => {
             {createElement(
               typeof Icon == "function" ? (Icon?.(isActive) as any) : Icon,
               {
-                size: 26,
+                size: 20,
               }
             )}
           </div>
           {!isTablet && (
             <div
               className={cn(
-                "flex text-lg leading-6 items-center ml-5 overflow-hidden mr-4 whitespace-nowrap",
+                "flex text-lg leading-6 items-center ml-3 overflow-hidden mr-4 whitespace-nowrap",
                 isActive ? "font-semibold" : "font-normal"
               )}
             >

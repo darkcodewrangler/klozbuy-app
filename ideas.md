@@ -1,0 +1,5 @@
+- only show business address to logged in users (show proximity only e.g "2km from you")
+- only show business contact to logged in users
+- show business address on map
+- show business contact on call button
+-
