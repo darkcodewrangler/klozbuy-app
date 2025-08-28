@@ -59,7 +59,7 @@ const ProductPostCard = ({ post, className }: PostCardProps) => {
       className={cn(
         "bg-white rounded-xl shadow-sm border border-border overflow-hidden",
         "transition-all duration-300 hover:shadow-md",
-        "animate-scale-in",
+        "animate-scale-in shrink-0",
         post?.isPromoted && "ring-2 ring-klozui-amber-500/50",
         className
       )}

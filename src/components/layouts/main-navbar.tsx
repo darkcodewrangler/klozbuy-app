@@ -9,6 +9,8 @@ import {
   Store,
   Heart,
   Clock,
+  ChevronDown,
+  MapPin,
 } from "lucide-react";
 import UserAvatar from "@/components/shared/user-avatar";
 import { Button } from "@/components/ui/button";
@@ -41,25 +43,13 @@ const Navbar = ({ onMobileMenuToggle, isMobileMenuOpen }: NavbarProps) => {
   };
 
   return (
-    <div className="bg-white sticky top-0 z-50 w-full px-4 py-2 flex items-center justify-between border-b border-border">
-      <div className="flex items-center justify-between gap-2">
-        <AppLogo size="sm" showText={false} className="md:hidden" />
-        <Button
-          variant="ghost"
-          size="icon"
-          className="md:hidden"
-          onClick={onMobileMenuToggle}
-        >
-          <UserAvatar src={user.avatar} name={user.name} />
-        </Button>
-      </div>
-
-      <div className="hidden relative md:flex items-center bg-muted rounded-full flex-1 max-w-md mx-4">
+    <div className="bg-background sticky top-0 z-50 w-full px-4 py-2 flex items-center justify-between border-b border-border">
+      <div className="hidden relative md:flex items-center bg-muted/50 border border-muted-foreground/20 rounded-md flex-1 max-w-md ">
         <Search size={16} className="text-muted-foreground absolute left-3" />
         <Input
           type="search"
-          placeholder="Search businesses, products..."
-          className="bg-transparent rounded-full pl-9 font-semibold border-none outline-none w-full text-sm"
+          placeholder="Search for products, businesses..."
+          className="bg-transparent rounded-md pl-9  border-none outline-none w-full text-sm"
         />
       </div>
 
@@ -70,15 +60,32 @@ const Navbar = ({ onMobileMenuToggle, isMobileMenuOpen }: NavbarProps) => {
 
         {isAuthenticated ? (
           <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+            <DropdownMenuTrigger className="border border-muted-foreground/10 rounded-md pl-1 pr-2 py-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ring/50">
+              <div className="flex gap-2 items-center">
                 <UserAvatar
                   name={user.name}
                   size="sm"
                   userType={user.type as "individual" | "business"}
-                  src={user.avatar}
+                  src={
+                    user.avatar ||
+                    "https://images.unsplash.com/photo-1463453091185-61582044d556?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  }
                 />
-              </Button>
+                <div className="flex flex-col items-start gap-1">
+                  <p className="text-sm font-medium leading-none text-primary">
+                    Hello, {user.name.split(" ")[0]}
+                  </p>
+                  <div className="text-xs leading-none text-muted-foreground">
+                    <div className="flex items-center gap-1 ">
+                      <MapPin className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                      <span className=" inline-block truncate max-w-[120px]">
+                        14 Adeola Odeku St
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <ChevronDown className="ml-1 h-4 w-4 text-muted-foreground" />
+              </div>
             </DropdownMenuTrigger>
             <DropdownMenuContent
               className="w-56 mr-2 mt-1"
@@ -107,10 +114,19 @@ const Navbar = ({ onMobileMenuToggle, isMobileMenuOpen }: NavbarProps) => {
                   <Heart className="mr-2 h-4 w-4" />
                   <span>Favorites</span>
                 </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Store className="mr-2 h-4 w-4" />
-                  <span>My Business</span>
-                </DropdownMenuItem>
+                {user.type === "business" && (
+                  <DropdownMenuItem>
+                    <Store className="mr-2 h-4 w-4" />
+                    <span>Business Dashboard</span>
+                  </DropdownMenuItem>
+                )}
+                {user.type === "business" && (
+                  <DropdownMenuItem>
+                    <Store className="mr-2 h-4 w-4" />
+                    <span>My Business</span>
+                  </DropdownMenuItem>
+                )}
+
                 <DropdownMenuItem>
                   <Clock className="mr-2 h-4 w-4" />
                   <span>Activity</span>

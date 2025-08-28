@@ -22,7 +22,7 @@ const MobileNav = () => {
     { path: "/", icon: HomeIcon, label: "Home" },
     { path: "/search", icon: Search, label: "Discover" },
     { path: "/notifications", icon: Bell, label: "Notifications" },
-    { path: "/my-business", icon: Store, label: "Business" },
+    { path: "/my-shop", icon: Store, label: "Shop" },
     { path: "/messages", icon: Mail, label: "Messages" },
   ];
 

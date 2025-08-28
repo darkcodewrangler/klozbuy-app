@@ -55,7 +55,7 @@ const PostCard = ({ post, className }: PostCardProps) => {
   return (
     <div
       className={cn(
-        "bg-white rounded-xl shadow-sm border border-border overflow-hidden",
+        "bg-white rounded-xl shadow-sm border border-border overflow-hidden shrink-0",
         "transition-all duration-300 hover:shadow-md",
         "animate-scale-in",
         post.isPromoted && "ring-2 ring-klozui-amber-500/50",

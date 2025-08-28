@@ -148,14 +148,6 @@ const Sidebar = memo(({ className }: SidebarProps) => {
                 label="Home"
               />
               <NavItem path="/search" icon={Search} label="Discover" />
-              <NavItem path="/messages" icon={Mail} label="Messages" />
-              <NavItem
-                path="/notifications"
-                icon={Bell}
-                label="Notifications"
-              />
-              <NavItem path="/profile" icon={User2} label="Profile" />
-              <NavItem path="/favorites" icon={Heart} label="Favorites" />
             </div>
 
             {isAuthenticated && (
@@ -168,80 +160,23 @@ const Sidebar = memo(({ className }: SidebarProps) => {
                   </p>
                 )}
                 <div className="space-y-1 px-1">
-                  <NavItem
-                    path="/my-business"
-                    icon={Store}
-                    label="My Business"
-                  />
+                  <NavItem path="/my-shop" icon={Store} label="My Shop" />
                   <NavItem path="/locations" icon={Map} label="Locations" />
                   <NavItem path="/promote" icon={Megaphone} label="Promote" />
-                  <NavItem
-                    path="/subscriptions"
-                    icon={Crown}
-                    label="Subscriptions"
-                  />
-                  <NavItem
-                    path="/dashboard"
-                    icon={BarChart3}
-                    label="Dashboard"
-                  />
+                  <NavItem path="/premium" icon={Crown} label="Go Premium" />
+                  {user.type === "business" && (
+                    <NavItem
+                      path="/dashboard"
+                      icon={BarChart3}
+                      label="Dashboard"
+                    />
+                  )}
                 </div>
 
                 <Separator className="my-4" />
-
-                <NavItem path="/settings" icon={Settings} label="Settings" />
               </>
             )}
           </nav>
-
-          {isAuthenticated ? (
-            <div className="mt-auto pt-4 border-t border-border">
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center">
-                  <UserAvatar
-                    name={user.name}
-                    size="sm"
-                    userType={user.type as "individual" | "business"}
-                    src={user.avatar}
-                  />
-
-                  <div className="ml-2">
-                    <p className="text-sm font-medium truncate">{user.name}</p>
-                    <p className="text-xs text-muted-foreground capitalize">
-                      {user.type}
-                    </p>
-                  </div>
-                </div>
-
-                {/* TODO: Add logout functionality */}
-                {/* <Button variant="ghost" size="icon">
-                <LogOut size={18} />
-              </Button> */}
-              </div>
-
-              {/* TODO: FIX THIS: Implement and style */}
-              {/* {user.type === "individual" && (
-              <Link href="/onboarding?type=business">
-                <Button
-                  variant="outline"
-                  className="w-full border-dashed border-klozui-amber-500/50 text-klozui-amber-500 hover:bg-klozui-amber-500/5 hover:border-klozui-amber-500/80"
-                >
-                  <Store size={16} className="mr-2" />
-                  {isDesktop && "Create Business"}
-                </Button>
-              </Link>
-            )} */}
-            </div>
-          ) : (
-            <div className="mt-auto pt-4 border-t border-border space-y-2">
-              <Button className="w-full bg-klozui-green-600 hover:bg-klozui-green-600/90 text-white">
-                Sign up
-              </Button>
-              <Button variant="outline" className="w-full">
-                Log in
-              </Button>
-            </div>
-          )}
         </ScrollArea>
       </div>
     </div>
