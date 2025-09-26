@@ -7,3 +7,4 @@ export * from "./reviews-schema";
 export * from "./media-schema";
 export * from "./subscriptions-schema";
 export * from "./advertisements-schema";
+export * from "./marketplace-schema";
