@@ -18,6 +18,7 @@ import {
   Bell,
   Mail,
   User2,
+  ShoppingBag,
 } from "lucide-react";
 import AppLogo from "@/components/shared/app-logo";
 import UserAvatar from "@/components/shared/user-avatar";
@@ -147,6 +148,7 @@ const Sidebar = memo(({ className }: SidebarProps) => {
                 }
                 label="Home"
               />
+              <NavItem path="/marketplace" icon={ShoppingBag} label="Marketplace" />
               <NavItem path="/search" icon={Search} label="Discover" />
             </div>
 
