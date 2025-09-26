@@ -1,9 +1,9 @@
 import { ProfileLayout } from "@/components/profile/profile-layout";
 import { SellerProfile } from "@/components/profile/seller-profile";
 import { BuyerProfile } from "@/components/profile/buyer-profile";
-import { getStoredUser } from "@/lib/auth";
-import { getStoredPostsByUsername } from "@/lib/store/posts";
-import { Layout } from "@/components/layouts/layout";
+// import { getStoredUser } from "@/lib/auth";
+import { getStoredPostsByUsername, getStoredUser } from "@/lib/store/posts";
+import Layout from "@/components/layouts/layout";
 import { Metadata } from "next";
 import {
   Package,
@@ -299,7 +299,7 @@ export default async function UserProfilePage({
         user={user}
         isOwnProfile={isOwnProfile}
         activeTab="overview"
-        onTabChange={() => {}}
+        // onTabChange={() => {}}
         tabs={getProfileTabs()}
       >
         <TabsContent value="overview">

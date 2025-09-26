@@ -28,7 +28,7 @@ import {
   CheckCircle,
   XCircle,
   AlertCircle,
-  BarChart3
+  BarChart3,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -116,7 +116,7 @@ export function BuyerProfile({
   activities,
   stats,
   preferences,
-  isOwnProfile
+  isOwnProfile,
 }: BuyerProfileProps) {
   const [activeTab, setActiveTab] = useState("overview");
 
@@ -165,7 +165,13 @@ export function BuyerProfile({
     }
   };
 
-  const StatCard = ({ icon, title, value, subtitle, trend }: {
+  const StatCard = ({
+    icon,
+    title,
+    value,
+    subtitle,
+    trend,
+  }: {
     icon: React.ReactNode;
     title: string;
     value: string | number;
@@ -176,15 +182,13 @@ export function BuyerProfile({
       <CardContent className="p-4 sm:p-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-blue-50 rounded-lg">
-              {icon}
-            </div>
+            <div className="p-2 bg-blue-50 rounded-lg">{icon}</div>
             <div>
               <p className="text-sm font-medium text-gray-600">{title}</p>
-              <p className="text-xl sm:text-2xl font-bold text-gray-900">{value}</p>
-              {subtitle && (
-                <p className="text-xs text-gray-500">{subtitle}</p>
-              )}
+              <p className="text-xl sm:text-2xl font-bold text-gray-900">
+                {value}
+              </p>
+              {subtitle && <p className="text-xs text-gray-500">{subtitle}</p>}
             </div>
           </div>
           {trend && (
@@ -211,7 +215,9 @@ export function BuyerProfile({
           />
           <div className="flex-1 min-w-0">
             <div className="flex items-start justify-between mb-2">
-              <h3 className="font-semibold text-gray-900 truncate">{purchase.productTitle}</h3>
+              <h3 className="font-semibold text-gray-900 truncate">
+                {purchase.productTitle}
+              </h3>
               <Badge className={getStatusColor(purchase.status)}>
                 <div className="flex items-center gap-1">
                   {getStatusIcon(purchase.status)}
@@ -222,9 +228,11 @@ export function BuyerProfile({
             <div className="flex items-center gap-2 mb-2">
               <Avatar className="w-6 h-6">
                 <AvatarImage src={purchase.sellerAvatar} />
-                <AvatarFallback>{purchase.sellerName[0]}</AvatarFallback>
+                <AvatarFallback>{purchase.sellerName?.[0]}</AvatarFallback>
               </Avatar>
-              <span className="text-sm text-gray-600">{purchase.sellerName}</span>
+              <span className="text-sm text-gray-600">
+                {purchase.sellerName}
+              </span>
             </div>
             <div className="flex items-center justify-between">
               <span className="font-bold text-green-600">
@@ -241,7 +249,9 @@ export function BuyerProfile({
                     <Star
                       key={i}
                       className={`w-3 h-3 ${
-                        i < purchase.rating! ? "fill-yellow-400 text-yellow-400" : "text-gray-300"
+                        i < purchase.rating!
+                          ? "fill-yellow-400 text-yellow-400"
+                          : "text-gray-300"
                       }`}
                     />
                   ))}
@@ -264,7 +274,11 @@ export function BuyerProfile({
           className="w-full h-32 sm:h-40 object-cover"
         />
         <div className="absolute top-2 right-2">
-          <Button size="sm" variant="ghost" className="bg-white/80 hover:bg-white">
+          <Button
+            size="sm"
+            variant="ghost"
+            className="bg-white/80 hover:bg-white"
+          >
             <Heart className="w-4 h-4 fill-red-500 text-red-500" />
           </Button>
         </div>
@@ -275,7 +289,9 @@ export function BuyerProfile({
         )}
       </div>
       <CardContent className="p-4">
-        <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2">{favorite.title}</h3>
+        <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2">
+          {favorite.title}
+        </h3>
         <div className="flex items-center justify-between mb-2">
           <span className="font-bold text-green-600">
             {formatPrice(favorite.price, favorite.currency)}
@@ -296,17 +312,29 @@ export function BuyerProfile({
     <div className="flex gap-3 p-4 hover:bg-gray-50 rounded-lg transition-colors">
       <div className="flex-shrink-0">
         <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-          {activity.type === "purchase" && <ShoppingBag className="w-4 h-4 text-blue-600" />}
-          {activity.type === "review" && <Star className="w-4 h-4 text-yellow-600" />}
-          {activity.type === "favorite" && <Heart className="w-4 h-4 text-red-600" />}
-          {activity.type === "message" && <MessageSquare className="w-4 h-4 text-green-600" />}
-          {activity.type === "view" && <Eye className="w-4 h-4 text-purple-600" />}
+          {activity.type === "purchase" && (
+            <ShoppingBag className="w-4 h-4 text-blue-600" />
+          )}
+          {activity.type === "review" && (
+            <Star className="w-4 h-4 text-yellow-600" />
+          )}
+          {activity.type === "favorite" && (
+            <Heart className="w-4 h-4 text-red-600" />
+          )}
+          {activity.type === "message" && (
+            <MessageSquare className="w-4 h-4 text-green-600" />
+          )}
+          {activity.type === "view" && (
+            <Eye className="w-4 h-4 text-purple-600" />
+          )}
         </div>
       </div>
       <div className="flex-1 min-w-0">
         <p className="font-medium text-gray-900">{activity.title}</p>
         <p className="text-sm text-gray-600 mt-1">{activity.description}</p>
-        <p className="text-xs text-gray-500 mt-2">{formatDate(activity.timestamp)}</p>
+        <p className="text-xs text-gray-500 mt-2">
+          {formatDate(activity.timestamp)}
+        </p>
       </div>
       {activity.relatedItem && (
         <div className="flex-shrink-0">
@@ -319,8 +347,6 @@ export function BuyerProfile({
       )}
     </div>
   );
-
-
 
   return (
     <div className="space-y-6">
@@ -393,7 +419,10 @@ export function BuyerProfile({
               </div>
               {purchases.length > 3 && (
                 <div className="mt-6 text-center">
-                  <Button variant="outline" onClick={() => setActiveTab("purchases")}>
+                  <Button
+                    variant="outline"
+                    onClick={() => setActiveTab("purchases")}
+                  >
                     View All Purchases
                   </Button>
                 </div>
@@ -417,7 +446,10 @@ export function BuyerProfile({
               </div>
               {favorites.length > 3 && (
                 <div className="mt-6 text-center">
-                  <Button variant="outline" onClick={() => setActiveTab("favorites")}>
+                  <Button
+                    variant="outline"
+                    onClick={() => setActiveTab("favorites")}
+                  >
                     View All Favorites
                   </Button>
                 </div>
@@ -512,7 +544,8 @@ export function BuyerProfile({
               <div>
                 <h4 className="font-medium mb-3">Price Range</h4>
                 <p className="text-sm text-gray-600">
-                  {formatPrice(preferences.priceRange.min, "USD")} - {formatPrice(preferences.priceRange.max, "USD")}
+                  {formatPrice(preferences.priceRange.min, "USD")} -{" "}
+                  {formatPrice(preferences.priceRange.max, "USD")}
                 </p>
               </div>
               <div>
@@ -527,14 +560,20 @@ export function BuyerProfile({
               <div>
                 <h4 className="font-medium mb-3">Notifications</h4>
                 <div className="space-y-1">
-                  {Object.entries(preferences.notifications).map(([key, enabled]) => (
-                    <div key={key} className="flex items-center gap-2">
-                      <div className={`w-2 h-2 rounded-full ${enabled ? "bg-green-500" : "bg-gray-300"}`} />
-                      <span className="text-sm capitalize">
-                        {key.replace(/([A-Z])/g, " $1").toLowerCase()}
-                      </span>
-                    </div>
-                  ))}
+                  {Object.entries(preferences.notifications).map(
+                    ([key, enabled]) => (
+                      <div key={key} className="flex items-center gap-2">
+                        <div
+                          className={`w-2 h-2 rounded-full ${
+                            enabled ? "bg-green-500" : "bg-gray-300"
+                          }`}
+                        />
+                        <span className="text-sm capitalize">
+                          {key.replace(/([A-Z])/g, " $1").toLowerCase()}
+                        </span>
+                      </div>
+                    )
+                  )}
                 </div>
               </div>
             </div>
