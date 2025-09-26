@@ -74,7 +74,7 @@ export function RequestCard({
   const formatBudget = () => {
     if (request.budgetType === "contact") return "Contact for pricing";
     
-    const formatPrice = (price: number) => `$${price.toLocaleString()}`;
+    const formatPrice = (price: number) => `₦${price.toLocaleString()}`;
     
     if (request.budgetMin && request.budgetMax) {
       if (request.budgetMin === request.budgetMax) {

@@ -75,10 +75,10 @@ Perfect for developers, designers, video editors, or anyone who needs a powerful
   ],
   location: { 
     id: "1", 
-    name: "Manhattan", 
-    city: "New York", 
-    state: "NY",
-    address: "Upper West Side, Manhattan, NY"
+    name: "Victoria Island",
+    city: "Lagos",
+    state: "Lagos",
+    address: "Victoria Island, Lagos, Nigeria"
   },
   seller: { 
     id: "1", 
@@ -110,7 +110,7 @@ const mockSimilarListings = [
     price: 1100,
     image: "/api/placeholder/200/150",
     condition: "good",
-    location: "Brooklyn, NY",
+    location: "Ikeja, Lagos",
   },
   {
     id: "3",
@@ -118,7 +118,7 @@ const mockSimilarListings = [
     price: 1800,
     image: "/api/placeholder/200/150",
     condition: "like_new",
-    location: "Queens, NY",
+    location: "Lekki, Lagos",
   },
   {
     id: "4",
@@ -126,7 +126,7 @@ const mockSimilarListings = [
     price: 1300,
     image: "/api/placeholder/200/150",
     condition: "excellent",
-    location: "Manhattan, NY",
+    location: "Surulere, Lagos",
   },
 ];
 

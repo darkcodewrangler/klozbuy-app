@@ -179,8 +179,8 @@ export function SearchFilters({
             className="w-full"
           />
           <div className="flex justify-between text-sm text-gray-500 mt-1">
-            <span>${priceRange[0]}</span>
-            <span>${priceRange[1] >= 10000 ? "10,000+" : priceRange[1]}</span>
+            <span>₦{priceRange[0].toLocaleString()}</span>
+                <span>₦{priceRange[1] >= 10000 ? "10,000+" : priceRange[1].toLocaleString()}</span>
           </div>
         </div>
       </div>
@@ -390,7 +390,7 @@ export function SearchFilters({
           )}
           {(filters.minPrice || filters.maxPrice) && (
             <Badge variant="secondary" className="flex items-center gap-1">
-              ${filters.minPrice || 0} - ${filters.maxPrice || "10,000+"}
+              ₦{(filters.minPrice || 0).toLocaleString()} - ₦{filters.maxPrice ? filters.maxPrice.toLocaleString() : "10,000+"}
               <X
                 className="h-3 w-3 cursor-pointer"
                 onClick={() => {
