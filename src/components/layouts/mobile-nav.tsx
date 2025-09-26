@@ -9,6 +9,7 @@ import {
   Store,
   Bell,
   Mail,
+  ShoppingBag,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { GoBell } from "react-icons/go";
@@ -20,9 +21,9 @@ const MobileNav = () => {
 
   const navItems = [
     { path: "/", icon: HomeIcon, label: "Home" },
+    { path: "/marketplace", icon: ShoppingBag, label: "Marketplace" },
     { path: "/search", icon: Search, label: "Discover" },
     { path: "/notifications", icon: Bell, label: "Notifications" },
-    { path: "/my-shop", icon: Store, label: "Shop" },
     { path: "/messages", icon: Mail, label: "Messages" },
   ];
 

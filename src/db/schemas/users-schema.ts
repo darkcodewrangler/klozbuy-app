@@ -228,7 +228,6 @@ export const usersRelations = relations(users, ({ one, many }) => ({
   commentReactions: many(commentReactions),
   advertisements: many(advertisements),
   media: many(medias),
-  locations: many(locations),
   sentMessages: many(messages),
   conversationParticipants: many(conversationParticipants),
   createdConversations: many(conversations),
