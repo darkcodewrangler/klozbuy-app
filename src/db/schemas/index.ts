@@ -8,3 +8,4 @@ export * from "./media-schema";
 export * from "./subscriptions-schema";
 export * from "./advertisements-schema";
 export * from "./marketplace-schema";
+export * from "./privacy-schema";

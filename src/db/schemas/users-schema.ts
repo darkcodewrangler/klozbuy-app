@@ -20,12 +20,15 @@ import {
   posts,
 } from "./posts-schema";
 import { medias } from "./media-schema";
-import { messages } from "./messages-schema";
-import { conversationParticipants } from "./messages-schema";
-import { conversations } from "./messages-schema";
-import { messageReactions } from "./messages-schema";
-import { messageReadReceipts } from "./messages-schema";
-import { messageMentions } from "./messages-schema";
+import {
+  messages,
+  conversationParticipants,
+  conversations,
+  messageReactions,
+  messageReadReceipts,
+  messageMentions,
+} from "./messages-schema";
+import { userPrivacySettings } from "./privacy-schema";
 import { generateUniqueId } from "@/lib/id-generator";
 
 const genderEnum = ["male", "female", "other", "prefer_not_to_say"] as const;
@@ -221,6 +224,10 @@ export const usersRelations = relations(users, ({ one, many }) => ({
   businessProfile: one(businessProfiles, {
     fields: [users.id],
     references: [businessProfiles.userId],
+  }),
+  privacySettings: one(userPrivacySettings, {
+    fields: [users.id],
+    references: [userPrivacySettings.userId],
   }),
   posts: many(posts),
   comments: many(postComments),
