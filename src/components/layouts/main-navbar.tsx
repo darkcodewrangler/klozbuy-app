@@ -11,6 +11,7 @@ import {
   Clock,
   ChevronDown,
   MapPin,
+  LocateIcon,
 } from "lucide-react";
 import UserAvatar from "@/components/shared/user-avatar";
 import { Button } from "@/components/ui/button";
@@ -25,6 +26,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import AppLogo from "@/components/shared/app-logo";
+import LocationBadge from "../shared/location-badge";
 
 interface NavbarProps {
   onMobileMenuToggle: () => void;
@@ -94,16 +96,27 @@ const Navbar = ({ onMobileMenuToggle, isMobileMenuOpen }: NavbarProps) => {
             >
               <DropdownMenuLabel className="font-normal">
                 <div className="flex flex-col space-y-1">
-                  <p className="text-sm font-medium leading-none">
+                  <p className="text-base font-medium leading-none">
                     {user.name}
                   </p>
-                  <p className="text-xs leading-none text-muted-foreground">
+                  <p className="text-sm leading-none text-muted-foreground">
                     {user.type === "individual"
                       ? "Individual Account"
                       : "Business Account"}
                   </p>
                 </div>
               </DropdownMenuLabel>
+              <DropdownMenuSeparator />
+
+              <DropdownMenuItem className="cursor-default hover:bg-transparent">
+                <div className="flex items-center gap-2">
+                  <Button size="sm">
+                    <LocateIcon className="mr-1" />
+                    <span>Change Location</span>
+                  </Button>
+                </div>
+              </DropdownMenuItem>
+
               <DropdownMenuSeparator />
               <DropdownMenuGroup>
                 <DropdownMenuItem>

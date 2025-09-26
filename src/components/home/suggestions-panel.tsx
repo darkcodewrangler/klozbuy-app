@@ -64,7 +64,7 @@ interface SuggestionsPanelProps {
 
 const SuggestionsPanel = ({ className }: SuggestionsPanelProps) => {
   return (
-    <div className={cn("hidden lg:flex flex-col gap-4 w-full", className)}>
+    <div className={cn("hidden xl:flex flex-col gap-4 w-full", className)}>
       {/* Nearby Businesses */}
       <Card className="animate-fade-in">
         <CardHeader className="pb-2 px-4">

@@ -98,9 +98,9 @@ const Index = () => {
         </div>
 
         {/* Right Panel */}
-        <div className="flex py-6">
-          <SuggestionsPanel className="w-[340px] flex-shrink-0" />
-        </div>
+        {/* <div className="flex py-6">
+          <SuggestionsPanel className="w-[320px] flex-shrink-0" />
+        </div> */}
       </div>
 
       {/* Auth Modal */}
