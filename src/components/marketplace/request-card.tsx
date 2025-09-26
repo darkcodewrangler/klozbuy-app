@@ -1,7 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import { Clock, MapPin, DollarSign, User, MessageCircle, Calendar, AlertCircle } from "lucide-react";
+import React, { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Heart, MapPin, Clock, Eye, MessageCircle, Star, DollarSign, User, Calendar, AlertCircle } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -9,6 +11,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import { formatDistanceToNow } from "date-fns";
+import { RequestResponse } from "@/models/marketplace.model";
+import { LocationBadge } from "@/components/shared/location-badge";
+import { useAuth } from "@/hooks/useAuth";
 
 interface RequestCardProps {
   request: {
@@ -70,6 +75,10 @@ export function RequestCard({
   className,
 }: RequestCardProps) {
   const [imageError, setImageError] = useState(false);
+  const { user } = useAuth();
+  
+  const currentUserId = user?.id;
+  const isFavoriteUser = false; // TODO: Implement favorite user logic
 
   const formatBudget = () => {
     if (request.budgetType === "contact") return "Contact for pricing";
@@ -174,14 +183,12 @@ export function RequestCard({
 
           {/* Location */}
           {request.location && (
-            <div className="flex items-center gap-2 text-sm text-gray-600">
-              <MapPin className="h-4 w-4" />
-              <span className="truncate">
-                {request.location.name}
-                {request.location.city && `, ${request.location.city}`}
-                {request.location.state && `, ${request.location.state}`}
-              </span>
-            </div>
+            <LocationBadge 
+              location={request.location}
+              isOwner={request.user?.id === currentUserId}
+              isFavoriteUser={isFavoriteUser}
+              className="text-gray-600"
+            />
           )}
 
           {/* User Info */}

@@ -28,6 +28,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 import { formatDistanceToNow } from "date-fns";
+import { LocationDisplay } from "@/components/shared/location-display";
+import { useAuth } from "@/hooks/useAuth";
 import { toast } from "sonner";
 
 // Mock data - in real implementation, this would come from API
@@ -133,6 +135,7 @@ const mockSimilarListings = [
 export default function ListingDetailsPage() {
   const params = useParams();
   const router = useRouter();
+  const { user, isAuthenticated } = useAuth();
   const [listing, setListing] = useState(mockListing);
   const [loading, setLoading] = useState(false);
   const [isFavorited, setIsFavorited] = useState(false);
@@ -140,6 +143,11 @@ export default function ListingDetailsPage() {
   const [showImageModal, setShowImageModal] = useState(false);
   const [showContactForm, setShowContactForm] = useState(false);
   const [message, setMessage] = useState("");
+
+  // Determine if current user is the owner
+  const isOwner = user?.id === listing.sellerId;
+  // TODO: Implement favorite seller logic
+  const isFavoriteUser = false;
 
   useEffect(() => {
     // In real implementation, fetch listing data
@@ -399,10 +407,13 @@ export default function ListingDetailsPage() {
                 <div>
                   <h3 className="font-semibold text-lg mb-3">Location & Delivery</h3>
                   <div className="space-y-3">
-                    <div className="flex items-center gap-2">
-                      <MapPin className="h-4 w-4 text-gray-500" />
-                      <span>{listing.location.address}</span>
-                    </div>
+                    <LocationDisplay 
+                      location={listing.location}
+                      isOwner={isOwner}
+                      isFavoriteUser={isFavoriteUser}
+                      variant="detailed"
+                      showIcon={true}
+                    />
                     
                     <div className="flex items-center gap-2">
                       <Truck className="h-4 w-4 text-gray-500" />

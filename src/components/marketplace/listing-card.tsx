@@ -10,6 +10,8 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
 import { ListingResponse } from "@/models/marketplace.model";
+import { LocationBadge } from "@/components/shared/location-badge";
+import { useAuth } from "@/hooks/useAuth";
 
 interface ListingCardProps {
   listing: ListingResponse;
@@ -28,6 +30,10 @@ export function ListingCard({
 }: ListingCardProps) {
   const [isFavorited, setIsFavorited] = useState(false);
   const [imageError, setImageError] = useState(false);
+  const { user } = useAuth();
+  
+  const currentUserId = user?.id;
+  const isFavoriteSeller = false; // TODO: Implement favorite seller logic
 
   const handleFavoriteClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -149,12 +155,12 @@ export function ListingCard({
 
             {/* Location and Time */}
             <div className="flex items-center justify-between text-sm text-gray-500 mt-2">
-              <div className="flex items-center gap-1">
-                <MapPin className="h-3 w-3" />
-                <span className="truncate">
-                  {listing.location?.city || "Location not specified"}
-                </span>
-              </div>
+              <LocationBadge 
+                location={listing.location}
+                isOwner={listing.seller?.id === currentUserId}
+                isFavoriteUser={isFavoriteSeller}
+                className="text-gray-500"
+              />
               <div className="flex items-center gap-1">
                 <Clock className="h-3 w-3" />
                 <span>{formatTimeAgo(listing.createdAt)}</span>
